@@ -11,7 +11,7 @@ use SelfLoader;
 @ISA    = qw( Exporter );
 @EXPORT = qw( ContentType NoCache NoContent Redirect RetryAfter );
 
-$CGI::Response::VERSION          = 0.02;
+$CGI::Response::VERSION          = '0.021';
 $CGI::Response::http_version     = '1.0';
 $CGI::Response::line_end         = "\n";
 $CGI::Response::DefaultInterface = '';
@@ -90,10 +90,6 @@ sub new {
   bless $self;
   $self->{'_header'} = new HTTP::Headers;
   
-  my( $cgi ) = Interface();
-  $cgi->get_vars_from_env;
-  $self->cgi($cgi);
-  
   my( $status )  = ( shift || '' );
   return $self unless $status;
   my( $message ) = ( shift || '' );
@@ -129,7 +125,7 @@ sub forwarded {
   my( $value ) = ( shift || 
 		  ( 'by ' . $self->_my_uri .
 		   ' for ' . 
-		   ( $self->cgi->var("REMOTE_HOST") ||
+		   ( $ENV{"REMOTE_HOST"} ||
 		    '[host unknown]' ) ) );
   $self->_many( 'Forwarded' => "$value" );
 }
@@ -176,8 +172,8 @@ sub retry_after {
 sub server {
   my( $self )   = shift;
   my( $value ) = ( shift || 
-		  $self->cgi->var("SERVER_SOFTWARE") ||
-		  ('CGI-Response/' . "$Version") );
+		  $ENV{"SERVER_SOFTWARE"} ||
+		  ('CGI-Response/' . "$VERSION") );
   $self->_one( 'Server' => "$value" );
 }
 
@@ -319,6 +315,12 @@ sub as_string {
 
 ### Utilites
 
+sub Env {
+  my( $cgi ) = Interface();
+  $cgi->get_vars_from_env;
+  $self->cgi($cgi);
+}
+
 sub Interface {
   use CGI::Base;
 
@@ -360,16 +362,16 @@ sub _date_string {
 sub _my_uri {
   my( $self ) = shift;
   my( $uri );
-  if ( $self->cgi->var('HTTP_ORIG_URI') ) {
-    $uri = $self->cgi->var('HTTP_ORIG_URI');
-  } elsif ( $self->cgi->var('SERVER_NAME') ) {
-    $uri = 	'http://'.$self->cgi->var('SERVER_NAME');
-    if ( $self->cgi->var('SERVER_PORT') != (80|0) ) {
-      $uri .= ':'.$self->cgi->var('SERVER_PORT');
+  if ( $ENV{'HTTP_ORIG_URI'} ) {
+    $uri = $ENV{'HTTP_ORIG_URI'};
+  } elsif ( $ENV{'SERVER_NAME'} ) {
+    $uri = 	'http://'.$ENV{'SERVER_NAME'};
+    if ( $ENV{'SERVER_PORT'} != (80|0) ) {
+      $uri .= ':'.$ENV{'SERVER_PORT'};
     }
-    $uri .= $self->cgi->var('SCRIPT_NAME');
-    if ( $self->cgi->var('QUERY_STRING') ) {
-      $uri .= '?'.$self->cgi->var('QUERY_STRING');
+    $uri .= $ENV{'SCRIPT_NAME'};
+    if ( $ENV{'QUERY_STRING'} ) {
+      $uri .= '?'.$ENV{'QUERY_STRING'};
     }
   } else {
     $uri = '[URI unknown]';
@@ -401,7 +403,7 @@ CGI::Response
 
 =head1 VERSION
 
-Version 0.02 (alpha release).
+Version 0.021 (alpha release).
 
 Please note that future versions are not guaranteed to be
 backwards-compatible with this version.  The interface will

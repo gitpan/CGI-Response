@@ -14,3 +14,6 @@ Put URI into print &Redirect.
 Go into nph mode if $0 =~ /^nph/.
 Finalize interface.
 Get the installation tests to work.
+Add better Expires support.
+Export only through EXPORT_OK.
+Maybe inherit from HTML::*?

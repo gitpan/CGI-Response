@@ -5,7 +5,7 @@ WriteMakefile(
 	      linkext => {
 		LINKTYPE => '', # not needed for MakeMakers >= 5
 	      }, 
-	      VERSION => "0.02",
+	      VERSION => "0.021",
 	      dist => {
 		COMPRESS=>'gzip -9f', 
 		SUFFIX=>'gz',

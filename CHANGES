@@ -1,6 +1,16 @@
 		       CHANGES TO CGI::RESPONSE
 		       ------------------------
 
+Version 0.021:
+	(25 November 1995) Bugfix (CGI::Base coredump)
+	    + Removed calls to CGI::Base for environment variables,
+	      which were causing a coredump on Irix and Solaris.  This
+	      is a temporary fix; future versions will add some sort
+	      of support for CGI::Base back in so that MiniSvr
+	      applications can use CGI::Response if they wish.  This
+	      bugfix may speed up CGI::Response as a side effect,
+	      since a CGI::Base object is no longer being created.
+
 Version 0.02:
 	(24 November 1995) SelfLoader + update
 	    + Added support for SelfLoader, which results in almost a
