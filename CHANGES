@@ -1,6 +1,32 @@
 		       CHANGES TO CGI::RESPONSE
 		       ------------------------
 
+Version 0.03: 
+	(01 December 1995) Simple Interface + pod 
+	    + Added an export tag, ':Simple', and moved the Simple 
+	      interface methods	from @EXPORT to @EXPORT_OK.  NOTE:
+	      This means that you must say 
+		   use CGI::Response qw(:Simple);
+	      in order to have access to the Simple Interface
+	      functions!  Don't install this version until you've
+	      upgraded old scripts which use it.
+	    + Set $| = 1 in all Simple Interface functions.  Thanks to
+	      Tim Bunce for implementation suggestions.
+	    + Added pod (plain old documentation) at the bottom of the
+	      Response.pm file (after the __END__ tag).  Type
+	          perldoc Response.pm
+	      while in the lib/CGI directory of this distribution in
+	      order to read it.  Only the Simple Interface pod is
+	      finished; the Full Interface pod will be completed by
+	      version 0.07.
+	    + Caused the &Redirect Simple Interface function to output
+	      a brief HTML page with a link to the redirect for those
+	      users whose user-agents do not recognize redirects.
+	      Thanks to Randal Schwartz for the idea.
+	    + Removed the 'RetryAfter' function, which a number of
+	      people have called 'useless' or 'wasted space'.  Let me
+	      know if this was your favorite function.
+
 Version 0.021:
 	(25 November 1995) Bugfix (CGI::Base coredump)
 	    + Removed calls to CGI::Base for environment variables,
@@ -14,9 +40,11 @@ Version 0.021:
 Version 0.02:
 	(24 November 1995) SelfLoader + update
 	    + Added support for SelfLoader, which results in almost a
-	      four-times speed increase for Simple Interface applications.
+	      four-times speed increase for Simple Interface
+	      applications.  Thanks to Andreas Koenig for
+	      implementation notes and suggestions.
 	    + Corrected some method calls to LWP::* modules for
-	      compatability with version 0.6 of that release.
+	      compatability with version 5b6 of that release.
 	    + Added the bare beginnings of a pod (documentation).
 	    + Added in some of the trappings of a real release -- a
 	      README file, this CHANGES files, a TO-DO list, and a
@@ -37,5 +65,7 @@ Version 0.011:
 Version 0.01: 
 	(08 August 1995) First release 
 	    + Defined most header values.  
-	    + Proposed an interface for 'Simple' or 'Full' applications.
-	    + 
+	    + Proposed an interface for 'Simple' or 'Full'
+	      applications.  Thanks to Lincoln Stein, Tim Bunce, 
+	      Luke Lu, and other CGI-perl list members for their
+	      comments on the first release.

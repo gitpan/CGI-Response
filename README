@@ -1,5 +1,5 @@
 
-		     CGI::Response, Version 0.021
+		     CGI::Response, Version 0.03
 
 		   Copyright (c) 1995 Marc Hedlund
 			 All rights reserved.
@@ -20,10 +20,17 @@ RELEASE, which means that future releases are _NOT_ guaranteed to be
 backwards-compatible.  The interface to this module will be frozen
 once it reaches beta release (version 0.1).
 
+WARNING FOR VERSION 0.03!
+-------------------------
+
+There have been a number of changes to the Simple Interface that will
+break older scripts using Simple Interface methods.  Please see the
+file CHANGES for notes on upgrading old scripts.
+
 DEPENDENCIES
 ------------
 
-First, I very strongly recommend that you install Perl version 5.001n
+First, I very strongly recommend that you install Perl version 5.001m
 or later.  If you are unsure which version of Perl you have, type
 'perl -v'.
 
@@ -75,9 +82,9 @@ The following should work on most systems:
 	make test
 	make install
 
-If that doesn't work, you can always just copy the 'CGI/Response.pm' file
-into the 'CGI' directory of your perl5 lib directory (probably
-/usr/local/lib/perl5/).
+If that doesn't work, you can always just copy the
+'lib/CGI/Response.pm' file into the 'CGI' directory of your perl5 lib
+directory (probably /usr/local/lib/perl5/).
 
 If you have any trouble, please feel free to write me at the address
 below.  I cannot promise to answer all questions, but if you raise an
@@ -85,9 +92,6 @@ installation issue, I will try to address it.
 
 USAGE
 -----
-
-[For the time being, the only real documentaion for this module is the
-source code.  The next release, 0.03, will include a full pod. --MH]
 
 Documentation is provided in pod ("plain old documentation") format,
 embedded within the Response.pm module itself.  Pod can be converted
