@@ -1,0 +1,31 @@
+		       CHANGES TO CGI::RESPONSE
+		       ------------------------
+
+Version 0.02:
+	(24 November 1995) SelfLoader + update
+	    + Added support for SelfLoader, which results in almost a
+	      four-times speed increase for Simple Interface applications.
+	    + Corrected some method calls to LWP::* modules for
+	      compatability with version 0.6 of that release.
+	    + Added the bare beginnings of a pod (documentation).
+	    + Added in some of the trappings of a real release -- a
+	      README file, this CHANGES files, a TO-DO list, and a
+	      tarfile distribution.
+	    + Added a Makefile.PL and MANIFEST file for MakeMaker
+	      support.  
+	    + I made a valiant effort to to include some tests, but 
+	      SelfLoader seems to really screw with -w warnings, so
+	      the tests keep failing.  Maybe next release.  For the
+	      time being, I've removed the internal self-test from the
+	      main Response.pm file.
+
+Version 0.011:
+	(14 August 1995) Maintenance release 
+	    + Corrected some 'use' statements to account for new
+	      LWP::* release.
+
+Version 0.01: 
+	(08 August 1995) First release 
+	    + Defined most header values.  
+	    + Proposed an interface for 'Simple' or 'Full' applications.
+	    + 

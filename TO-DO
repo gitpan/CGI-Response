@@ -1,0 +1,16 @@
+Make status complain if it gets just a code and can't find message.
+Deal with content_length, last_modified, and title.
+Deal with content!
+Think about mutlipart/mixed and other Luke comments.
+Deal with other, headers, reset.
+Test and develop close().
+Add as_hash and header for finer detail work.
+Add debugging level(s).
+Lighter, faster.
+Compare defaults to new HTTP/1.0 draft.
+Inherit from HTTP:: rather than creating a new HTTP:: object.
+Provide for alternate interfaces (see CGI::Request).
+Put URI into print &Redirect.
+Go into nph mode if $0 =~ /^nph/.
+Finalize interface.
+Get the installation tests to work.
